@@ -1,15 +1,28 @@
 import React from "react";
+import { IoIosArrowBack } from "react-icons/io";
+import { VscDebugRestart } from "react-icons/vsc";
 import { calculateWinner } from "../utils/calculateWinner";
 import Square from "./Square";
 
-const Board = ({ xIsNext, squares, onPlay }) => {
+const Board = ({ xIsNext, squares, onPlay, handleCloseGame, jumpTo }) => {
   const winner = calculateWinner(squares);
   let status;
 
   if (winner) {
-    status = `Winner: ${winner}`;
+    status = (
+      <p>
+        Winner: <span className="text-green-500 pl-2 font-bold">{winner}</span>
+      </p>
+    );
   } else {
-    status = `Next Player: ${xIsNext ? "X" : "O"}`;
+    status = (
+      <p>
+        Next Player:{" "}
+        <span className="text-[#FFD700] pl-2 font-bold">
+          {xIsNext ? "X" : "O"}
+        </span>
+      </p>
+    );
   }
 
   const handleValue = (i) => {
@@ -30,7 +43,7 @@ const Board = ({ xIsNext, squares, onPlay }) => {
   return (
     <>
       <div>
-        <p>{status}</p>
+        <div className="text-white mb-[24px]">{status}</div>
       </div>
       <div className="flex">
         <Square value={squares[0]} onSquareClick={() => handleValue(0)} />
@@ -46,6 +59,23 @@ const Board = ({ xIsNext, squares, onPlay }) => {
         <Square value={squares[6]} onSquareClick={() => handleValue(6)} />
         <Square value={squares[7]} onSquareClick={() => handleValue(7)} />
         <Square value={squares[8]} onSquareClick={() => handleValue(8)} />
+      </div>
+
+      <div className="flex items-center gap-5 mt-[24px]">
+        <button
+          onClick={() => handleCloseGame()}
+          className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
+        >
+          <IoIosArrowBack />
+          Back
+        </button>
+        <button
+          onClick={() => jumpTo(0)}
+          className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
+        >
+          <VscDebugRestart />
+          Restart
+        </button>
       </div>
     </>
   );

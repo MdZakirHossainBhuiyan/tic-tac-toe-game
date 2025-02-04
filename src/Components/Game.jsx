@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Board from "./Board";
 import History from "./History";
 
-const Game = () => {
+const Game = ({ handleCloseGame }) => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setXIsNext] = useState(true);
   const [currentMove, setCurrentMove] = useState(0);
@@ -22,9 +22,15 @@ const Game = () => {
   };
 
   return (
-    <div className="flex gap-[100px]">
+    <div className="flex items-start gap-[100px]">
       <div>
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board
+          xIsNext={xIsNext}
+          squares={currentSquares}
+          onPlay={handlePlay}
+          handleCloseGame={handleCloseGame}
+          jumpTo={jumpTo}
+        />
       </div>
       <div>
         <History history={history} jumpTo={jumpTo} />

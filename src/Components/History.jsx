@@ -1,4 +1,5 @@
 import React from "react";
+import { FaRegHandPointRight } from "react-icons/fa";
 
 const History = ({ history, jumpTo }) => {
   const moves = history?.map((squares, move) => {
@@ -11,14 +12,17 @@ const History = ({ history, jumpTo }) => {
     }
 
     return (
-      <li key={move}>
+      <fragment key={move} className="flex flex-col items-start">
         <button
-          className="cursor-pointer bg-[white] border-0"
+          className={`flex items-center gap-3 cursor-pointer text-white border-0 ${
+            move === 0 ? "mt-0" : "mt-2"
+          }`}
           onClick={() => jumpTo(move)}
         >
+          <FaRegHandPointRight className="text-[#FFD700]" />
           {description}
         </button>
-      </li>
+      </fragment>
     );
   });
 
