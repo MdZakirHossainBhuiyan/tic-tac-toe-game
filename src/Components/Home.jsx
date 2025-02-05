@@ -1,9 +1,6 @@
 import React from "react";
-import { GoDeviceDesktop } from "react-icons/go";
-import { MdOutlineHistoryToggleOff } from "react-icons/md";
 import { PiGameControllerThin } from "react-icons/pi";
-import { TbTicTac } from "react-icons/tb";
-import { TfiWorld } from "react-icons/tfi";
+import DisplayRandomInfo from "./DisplayRandomInfo";
 
 const Home = ({ handleStartGame }) => {
   return (
@@ -37,53 +34,7 @@ const Home = ({ handleStartGame }) => {
         </button>
       </div>
 
-      <div className="w-full flex items-center justify-between gap-[100px] mt-[72px]">
-        <div className="w-full grid grid-cols-4 gap-[24px]">
-          <div className="">
-            <div className="flex items-center gap-[8px] text-[#FFD700]">
-              <MdOutlineHistoryToggleOff />
-              <span className="">Ancient Origins:</span>
-            </div>
-            <p className="text-gray-300 text-[14px] pl-[22px] mt-[8px] leading-4 text-justify">
-              Tic Tac Toe dates back to Ancient Egypt and the Roman Empire,
-              where similar grid-based games were played on stone tablets.
-            </p>
-          </div>
-
-          <div className="">
-            <div className="flex items-center gap-[8px] text-[#FFD700]">
-              <TfiWorld />
-              <span className="">Different Names Worldwide:</span>
-            </div>
-            <p className="text-gray-300 text-[14px] pl-[22px] mt-[8px] leading-4 text-justify">
-              In Britain, it's called "Noughts and Crosses," while in some parts
-              of the world, it's known as "X and O."
-            </p>
-          </div>
-          <div className="">
-            <div className="flex items-center gap-[8px] text-[#FFD700]">
-              {/* <PiGameControllerThin /> */}
-              <GoDeviceDesktop />
-              <span className="">First Video Game Version:</span>
-            </div>
-            <p className="text-gray-300 text-[14px] pl-[22px] mt-[8px] leading-4 text-justify">
-              The first computer version of Tic Tac Toe was created in 1952 by
-              A.S. Douglas as part of his PhD thesis on human-computer
-              interaction.
-            </p>
-          </div>
-          <div className="">
-            <div className="flex items-center gap-[8px] text-[#FFD700]">
-              <TbTicTac />
-              <span className="">Oldest Tic Tac Toe Board:</span>
-            </div>
-            <p className="text-gray-300 text-[14px] pl-[22px] mt-[8px] leading-4 text-justify">
-              The earliest known Tic Tac Toe board was found in the ruins of the
-              Roman Empire, carved into stone.
-            </p>
-          </div>
-        </div>
-      </div>
+      <DisplayRandomInfo />
     </div>
   );
 };
