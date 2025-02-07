@@ -2,7 +2,7 @@ import React from "react";
 import { PiGameControllerThin } from "react-icons/pi";
 import DisplayRandomInfo from "./DisplayRandomInfo";
 
-const Home = ({ handleStartGame }) => {
+const Home = ({ handleOpenModal }) => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-between">
       <div className="w-full flex flex-col items-center justify-center">
@@ -26,7 +26,7 @@ const Home = ({ handleStartGame }) => {
 
       <div>
         <button
-          onClick={() => handleStartGame()}
+          onClick={() => handleOpenModal()}
           className="flex items-center justify-center gap-5 bg-[#E3F2FD] rounded-full px-8 py-2 font-bold shadow-lg text-[#0F2027] cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
         >
           <PiGameControllerThin />
