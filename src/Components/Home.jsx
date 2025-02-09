@@ -4,7 +4,7 @@ import DisplayRandomInfo from "./DisplayRandomInfo";
 
 const Home = ({ handleOpenModal }) => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-between">
+    <div className="w-full h-full flex flex-col items-center justify-between p-[72px]">
       <div className="w-full flex flex-col items-center justify-center">
         <h1
           className="text-[24px] text-[#FFD700] font-extrabold"

@@ -1,9 +1,9 @@
 import React from "react";
 import { FaHandPointRight } from "react-icons/fa";
-import { GiFox, GiHorseHead, GiLion, GiTigerHead } from "react-icons/gi";
 import { HiMiniXMark } from "react-icons/hi2";
-import { LuBird } from "react-icons/lu";
 import { TbVs } from "react-icons/tb";
+import { color } from "../utils/color";
+import { icons } from "../utils/icons";
 
 const GameSettingsCard = ({
   setPlayer1,
@@ -14,7 +14,21 @@ const GameSettingsCard = ({
   handleToss,
   handleStartGame,
   handleCloseModal,
+  selectedColor1,
+  selectedColor2,
+  setSelectedColor1,
+  setSelectedColor2,
+  selectedIcon1,
+  selectedIcon2,
+  setSelectedIcon1,
+  setSelectedIcon2,
+  matchDuration,
+  setMatchDuration,
 }) => {
+  const handleColor = (player, colorCode) => {
+    console.log("selectedColor ", colorCode);
+  };
+
   return (
     <div className="absolute top-0 w-full h-[100vh] bg-transparent flex items-center justify-center">
       <div className="w-[500px] bg-[#edede9] shadow-2xs rounded-xl p-10 relative">
@@ -77,41 +91,64 @@ const GameSettingsCard = ({
           <div className="">
             <p>Color:</p>
             <div className="flex items-center gap-2 mt-1 mb-3">
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb6f92] border-2 border-[#7209b7]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb8500]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#0096c7]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fcbf49]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#06d6a0]"></button>
+              {color?.map((item) => (
+                <button
+                  key={item?.id}
+                  onClick={() => setSelectedColor1(item?.code)}
+                  className={`w-[30px] h-[30px] rounded-sm ${
+                    item?.code
+                  } border-2 ${
+                    item?.code === selectedColor1
+                      ? "border-[#7209b7]"
+                      : "border-none"
+                  } cursor-pointer`}
+                  disabled={item?.code === selectedColor2}
+                ></button>
+              ))}
             </div>
 
             <p>Icon:</p>
             <div className="flex items-center gap-2 mt-1 mb-8">
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb6f92] flex items-center justify-center text-white border-2 border-[#7209b7]">
-                <LuBird />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb8500] flex items-center justify-center text-white">
-                <GiLion />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#0096c7] flex items-center justify-center text-white">
-                <GiTigerHead />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fcbf49] flex items-center justify-center text-white">
-                <GiFox />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#06d6a0] flex items-center justify-center text-white">
-                <GiHorseHead />
-              </button>
+              {icons?.map((item) => (
+                <button
+                  key={item?.id}
+                  onClick={() => setSelectedIcon1(item?.title)}
+                  className={`w-[30px] h-[30px] rounded-sm ${selectedColor1} flex items-center justify-center text-white border-2 ${
+                    item?.title === selectedIcon1
+                      ? "border-[#7209b7]"
+                      : "border-none"
+                  } cursor-pointer`}
+                  disabled={item?.title === selectedIcon2}
+                >
+                  <item.icon />
+                </button>
+              ))}
             </div>
 
             <p>Level:</p>
             <div className="flex items-center gap-2 mt-1">
-              <button className="bg-[#ad2831] text-white px-3 py-1 rounded-sm border-2 border-[#7209b7]">
+              <button
+                onClick={() => setMatchDuration(20)}
+                className={`bg-[#ad2831] text-white px-3 py-1 rounded-sm border-2 ${
+                  matchDuration === 20 ? "border-[#7209b7]" : "border-none"
+                } cursor-pointer`}
+              >
                 20s
               </button>
-              <button className="bg-[#800e13] text-white px-3 py-1 rounded-sm">
+              <button
+                onClick={() => setMatchDuration(15)}
+                className={`bg-[#ad2831] text-white px-3 py-1 rounded-sm border-2 ${
+                  matchDuration === 15 ? "border-[#7209b7]" : "border-none"
+                } cursor-pointer`}
+              >
                 15s
               </button>
-              <button className="bg-[#640d14] text-white px-3 py-1 rounded-sm">
+              <button
+                onClick={() => setMatchDuration(10)}
+                className={`bg-[#ad2831] text-white px-3 py-1 rounded-sm border-2 ${
+                  matchDuration === 10 ? "border-[#7209b7]" : "border-none"
+                } cursor-pointer`}
+              >
                 10s
               </button>
             </div>
@@ -120,30 +157,38 @@ const GameSettingsCard = ({
           <div>
             <p>Color:</p>
             <div className="flex items-center gap-2 mt-1 mb-3">
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb6f92]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb8500] border-2 border-[#7209b7]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#0096c7]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fcbf49]"></button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#06d6a0]"></button>
+              {color?.map((item) => (
+                <button
+                  key={item?.id}
+                  onClick={() => setSelectedColor2(item?.code)}
+                  className={`w-[30px] h-[30px] rounded-sm ${
+                    item?.code
+                  } border-2 ${
+                    item?.code === selectedColor2
+                      ? "border-[#7209b7]"
+                      : "border-none"
+                  } cursor-pointer`}
+                  disabled={item?.code === selectedColor1}
+                ></button>
+              ))}
             </div>
 
             <p>Icon:</p>
             <div className="flex items-center gap-2 mt-1 mb-3">
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb6f92] flex items-center justify-center text-white">
-                <LuBird />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fb8500] flex items-center justify-center text-white border-2 border-[#7209b7]">
-                <GiLion />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#0096c7] flex items-center justify-center text-white">
-                <GiTigerHead />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#fcbf49] flex items-center justify-center text-white">
-                <GiFox />
-              </button>
-              <button className="w-[30px] h-[30px] rounded-sm bg-[#06d6a0] flex items-center justify-center text-white">
-                <GiHorseHead />
-              </button>
+              {icons?.map((item) => (
+                <button
+                  key={item?.id}
+                  onClick={() => setSelectedIcon2(item?.title)}
+                  className={`w-[30px] h-[30px] rounded-sm ${selectedColor2} flex items-center justify-center text-white border-2 ${
+                    item?.title === selectedIcon2
+                      ? "border-[#7209b7]"
+                      : "border-none"
+                  } cursor-pointer`}
+                  disabled={item?.title === selectedIcon1}
+                >
+                  <item.icon />
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -153,7 +198,7 @@ const GameSettingsCard = ({
             onClick={() => {
               handleStartGame(), handleCloseModal();
             }}
-            className="px-4 py-2 bg-[#ffa5ab] rounded-md cursor-pointer"
+            className="px-4 py-2 bg-[#ffa5ab] rounded-md cursor-pointer font-semibold"
           >
             Start Playing
           </button>

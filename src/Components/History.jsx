@@ -12,7 +12,7 @@ const History = ({ history, jumpTo }) => {
     }
 
     return (
-      <fragment key={move} className="flex flex-col items-start">
+      <div key={move} className="flex flex-col items-start">
         <button
           className={`flex items-center gap-3 cursor-pointer text-white border-0 ${
             move === 0 ? "mt-0" : "mt-2"
@@ -22,7 +22,7 @@ const History = ({ history, jumpTo }) => {
           <FaRegHandPointRight className="text-[#FFD700]" />
           {description}
         </button>
-      </fragment>
+      </div>
     );
   });
 
