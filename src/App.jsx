@@ -15,6 +15,8 @@ function App() {
   const [selectedIcon2, setSelectedIcon2] = useState("lion");
   const [matchDuration, setMatchDuration] = useState(20);
 
+  const [isRunning, setIsRunning] = useState(false);
+
   const handleStartGame = () => setIsStartGame(true);
   const handleCloseGame = () => setIsStartGame(false);
 
@@ -43,6 +45,8 @@ function App() {
           selectedIcon2={selectedIcon2}
           handleCloseGame={handleCloseGame}
           tossWinner={tossWinner}
+          matchDuration={matchDuration}
+          isRunning={isRunning}
         />
       ) : (
         <Home handleOpenModal={handleOpenModal} />
@@ -68,6 +72,7 @@ function App() {
           setSelectedIcon2={setSelectedIcon2}
           matchDuration={matchDuration}
           setMatchDuration={setMatchDuration}
+          setIsRunning={setIsRunning}
         />
       )}
     </div>

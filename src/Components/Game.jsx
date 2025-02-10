@@ -12,6 +12,8 @@ const Game = ({
   selectedIcon2,
   handleCloseGame,
   tossWinner,
+  matchDuration,
+  isRunning,
 }) => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setXIsNext] = useState();
@@ -52,6 +54,8 @@ const Game = ({
           selectedIcon2={selectedIcon2}
           xIsNext={xIsNext}
           status={status}
+          matchDuration={matchDuration}
+          isRunning={isRunning}
         />
         <div className="w-full flex items-start justify-center mt-[50px]">
           <Board

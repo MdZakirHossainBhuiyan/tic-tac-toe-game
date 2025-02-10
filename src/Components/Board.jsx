@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { VscDebugRestart } from "react-icons/vsc";
 import { calculateWinner } from "../utils/calculateWinner";
@@ -20,9 +20,11 @@ const Board = ({
   const winner = calculateWinner(squares);
   let status;
 
-  if (winner) {
-    setStatus(winner);
-  }
+  useEffect(() => {
+    if (winner) {
+      setStatus(winner);
+    }
+  }, [winner]);
 
   const handleValue = (i) => {
     if (squares[i] || calculateWinner(squares)) {
@@ -39,6 +41,7 @@ const Board = ({
 
     onPlay(nextSquares);
   };
+
   return (
     <div>
       <div className="flex">

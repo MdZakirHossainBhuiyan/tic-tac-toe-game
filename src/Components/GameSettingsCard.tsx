@@ -24,9 +24,12 @@ const GameSettingsCard = ({
   setSelectedIcon2,
   matchDuration,
   setMatchDuration,
+  setIsRunning,
 }) => {
-  const handleColor = (player, colorCode) => {
-    console.log("selectedColor ", colorCode);
+  const handlePlayStart = () => {
+    handleStartGame();
+    setIsRunning(true);
+    handleCloseModal();
   };
 
   return (
@@ -195,9 +198,7 @@ const GameSettingsCard = ({
 
         <div className="w-full flex items-center justify-end mt-5">
           <button
-            onClick={() => {
-              handleStartGame(), handleCloseModal();
-            }}
+            onClick={handlePlayStart}
             className="px-4 py-2 bg-[#ffa5ab] rounded-md cursor-pointer font-semibold"
           >
             Start Playing
