@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { infoData } from "../utils/InfoData";
+import { infoData } from "../utils/infoData.js";
 
 const DisplayRandomInfo = () => {
   const [selectedIndex, setSelectedIndex] = useState(
