@@ -10,6 +10,7 @@ const PlayerCard = ({
   selectedIcon2,
   xIsNext,
   status,
+  setStatus,
   matchDuration,
   isRunning,
 }) => {
@@ -21,6 +22,23 @@ const PlayerCard = ({
   const icon2 = icons.find((icon) => icon.title === selectedIcon2);
 
   useEffect(() => {
+    if (status) {
+      setTime1(0);
+      setTime2(0);
+
+      return;
+    }
+
+    if (time1 === 0 && time2 > 0) {
+      setStatus("O");
+      return;
+    }
+
+    if (time2 === 0 && time1 > 0) {
+      setStatus("X");
+      return;
+    }
+
     let timer;
     if (isRunning) {
       if (activePlayer === 1 && time1 > 0) {
@@ -35,7 +53,7 @@ const PlayerCard = ({
     }
 
     return () => clearInterval(timer);
-  }, [activePlayer, isRunning, time1, time2]);
+  }, [activePlayer, isRunning, time1, time2, status]);
 
   useEffect(() => {
     if (xIsNext) {

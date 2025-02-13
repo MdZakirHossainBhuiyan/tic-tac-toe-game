@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaHandPointRight } from "react-icons/fa";
 import { HiMiniXMark } from "react-icons/hi2";
 import { TbVs } from "react-icons/tb";
@@ -26,7 +26,15 @@ const GameSettingsCard = ({
   setMatchDuration,
   setIsRunning,
 }) => {
+  const [warning, setWarning] = useState(false);
+
   const handlePlayStart = () => {
+    setWarning(false);
+    if (!tossWinner) {
+      setWarning(true);
+      return;
+    }
+
     handleStartGame();
     setIsRunning(true);
     handleCloseModal();
@@ -81,12 +89,17 @@ const GameSettingsCard = ({
               <span>{tossWinner} will play first</span>
             </div>
           ) : (
-            <button
-              onClick={handleToss}
-              className="bg-[#ffb3c6] px-3 py-1 rounded-md shadow-2xl cursor-pointer font-bold"
-            >
-              Toss
-            </button>
+            <div className="w-full flex flex-col items-center justify-center">
+              <button
+                onClick={handleToss}
+                className="bg-[#ffb3c6] px-3 py-1 rounded-md shadow-2xl cursor-pointer font-bold"
+              >
+                Toss
+              </button>
+              {warning && (
+                <p className="text-red-400 text-center">You miss the toss!</p>
+              )}
+            </div>
           )}
         </div>
 

@@ -12,13 +12,14 @@ const Board = ({
   jumpTo,
   tossWinner,
   setStatus,
+  status,
   selectedColor1,
   selectedColor2,
   selectedIcon1,
   selectedIcon2,
 }) => {
   const winner = calculateWinner(squares);
-  let status;
+  // let status;
 
   useEffect(() => {
     if (winner) {
@@ -43,8 +44,8 @@ const Board = ({
   };
 
   return (
-    <div>
-      <div className="flex">
+    <div className="">
+      <div className={`flex ${status ? "pointer-events-none" : ""}`}>
         <Square
           value={squares[0]}
           onSquareClick={() => handleValue(0)}
@@ -139,7 +140,7 @@ const Board = ({
           className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
         >
           <VscDebugRestart />
-          Restart
+          Play Again
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { icons } from "../utils/icons";
 import Board from "./Board";
 import History from "./History";
 import PlayerCard from "./PlayerCard";
@@ -21,6 +22,9 @@ const Game = ({
   const [currentMove, setCurrentMove] = useState(0);
 
   const currentSquares = history[currentMove];
+
+  const icon1 = icons.find((icon) => icon.title === selectedIcon1);
+  const icon2 = icons.find((icon) => icon.title === selectedIcon2);
 
   const handlePlay = (nextSquares) => {
     setXIsNext(!xIsNext);
@@ -54,10 +58,11 @@ const Game = ({
           selectedIcon2={selectedIcon2}
           xIsNext={xIsNext}
           status={status}
+          setStatus={setStatus}
           matchDuration={matchDuration}
           isRunning={isRunning}
         />
-        <div className="w-full flex items-start justify-center mt-[50px]">
+        <div className="w-full flex items-start justify-center gap-[50px] mt-[70px]">
           <Board
             xIsNext={xIsNext}
             squares={currentSquares}
@@ -65,19 +70,41 @@ const Game = ({
             handleCloseGame={handleCloseGame}
             jumpTo={jumpTo}
             tossWinner={tossWinner}
+            status={status}
             setStatus={setStatus}
             selectedColor1={selectedColor1}
             selectedColor2={selectedColor2}
             selectedIcon1={selectedIcon1}
             selectedIcon2={selectedIcon2}
           />
+
+          {status && (
+            <div>
+              <h3 className="text-white">Winner:</h3>
+              <div
+                className={`w-[100px] h-[100px] rounded-lg flex items-center justify-center text-white ${
+                  status === "X" ? selectedColor1 : selectedColor2
+                }`}
+              >
+                {status === "X" ? (
+                  <icon1.icon className="text-[70px]" />
+                ) : (
+                  <icon2.icon className="text-[70px]" />
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="w-[30%] h-[100vh] bg-[#52b788] pt-[50px] px-[30px]">
         <div className="text-[24px] font-bold text-white border-b border-[#FFD700] pb-2 mb-5">
           <h3>Move History:</h3>
         </div>
-        <History history={history} jumpTo={jumpTo} />
+        {!status ? (
+          <p className="text-white">After match you can explore history</p>
+        ) : (
+          <History history={history} jumpTo={jumpTo} />
+        )}
       </div>
     </div>
   );
