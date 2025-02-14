@@ -100,22 +100,6 @@ const Game = ({
             selectedIcon1={selectedIcon1}
             selectedIcon2={selectedIcon2}
           />
-          {/* {status !== "draw" && (
-            <div>
-              <h3 className="text-white">Winner:</h3>
-              <div
-                className={`w-[100px] h-[100px] rounded-lg flex items-center justify-center text-white ${
-                  status === "X" ? selectedColor1 : selectedColor2
-                }`}
-              >
-                {status === "X" ? (
-                  <icon1.icon className="text-[70px]" />
-                ) : (
-                  <icon2.icon className="text-[70px]" />
-                )}
-              </div>
-            </div>
-          )} */}
         </div>
       </div>
       <div className="w-[30%] h-[100vh] bg-[#52b788] pt-[50px] px-[30px]">

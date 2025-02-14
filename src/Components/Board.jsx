@@ -25,8 +25,6 @@ const Board = ({
 }) => {
   const winner = calculateWinner(squares);
 
-  console.log("history ", history?.length, winner);
-
   useEffect(() => {
     if (winner) {
       setStatus(winner);
@@ -143,19 +141,21 @@ const Board = ({
           <IoIosArrowBack />
           Back
         </button>
-        <button
-          onClick={() => {
-            setStatus(null);
-            jumpTo(0);
-            setIsRunning(true);
-            setTime1(matchDuration);
-            setTime2(matchDuration);
-          }}
-          className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
-        >
-          <VscDebugRestart />
-          Play Again
-        </button>
+        {status && (
+          <button
+            onClick={() => {
+              setStatus(null);
+              jumpTo(0);
+              setIsRunning(true);
+              setTime1(matchDuration);
+              setTime2(matchDuration);
+            }}
+            className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
+          >
+            <VscDebugRestart />
+            Play Again
+          </button>
+        )}
       </div>
     </div>
   );
