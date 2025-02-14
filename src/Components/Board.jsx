@@ -17,6 +17,10 @@ const Board = ({
   selectedColor2,
   selectedIcon1,
   selectedIcon2,
+  setIsRunning,
+  setTime1,
+  setTime2,
+  matchDuration,
 }) => {
   const winner = calculateWinner(squares);
   // let status;
@@ -71,7 +75,7 @@ const Board = ({
           selectedIcon2={selectedIcon2}
         />
       </div>
-      <div className="flex">
+      <div className={`flex ${status ? "pointer-events-none" : ""}`}>
         <Square
           value={squares[3]}
           onSquareClick={() => handleValue(3)}
@@ -97,7 +101,7 @@ const Board = ({
           selectedIcon2={selectedIcon2}
         />
       </div>
-      <div className="flex">
+      <div className={`flex ${status ? "pointer-events-none" : ""}`}>
         <Square
           value={squares[6]}
           onSquareClick={() => handleValue(6)}
@@ -136,6 +140,9 @@ const Board = ({
           onClick={() => {
             setStatus(null);
             jumpTo(0);
+            setIsRunning(true);
+            setTime1(matchDuration);
+            setTime2(matchDuration);
           }}
           className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
         >

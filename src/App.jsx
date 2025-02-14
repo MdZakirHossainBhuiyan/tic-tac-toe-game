@@ -47,6 +47,7 @@ function App() {
           tossWinner={tossWinner}
           matchDuration={matchDuration}
           isRunning={isRunning}
+          setIsRunning={setIsRunning}
         />
       ) : (
         <Home handleOpenModal={handleOpenModal} />

@@ -15,11 +15,15 @@ const Game = ({
   tossWinner,
   matchDuration,
   isRunning,
+  setIsRunning,
 }) => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setXIsNext] = useState();
   const [status, setStatus] = useState(null);
   const [currentMove, setCurrentMove] = useState(0);
+
+  const [time1, setTime1] = useState(matchDuration);
+  const [time2, setTime2] = useState(matchDuration);
 
   const currentSquares = history[currentMove];
 
@@ -61,6 +65,11 @@ const Game = ({
           setStatus={setStatus}
           matchDuration={matchDuration}
           isRunning={isRunning}
+          setIsRunning={setIsRunning}
+          time1={time1}
+          setTime1={setTime1}
+          time2={time2}
+          setTime2={setTime2}
         />
         <div className="w-full flex items-start justify-center gap-[50px] mt-[70px]">
           <Board
@@ -76,6 +85,10 @@ const Game = ({
             selectedColor2={selectedColor2}
             selectedIcon1={selectedIcon1}
             selectedIcon2={selectedIcon2}
+            setIsRunning={setIsRunning}
+            setTime1={setTime1}
+            setTime2={setTime2}
+            matchDuration={matchDuration}
           />
 
           {status && (

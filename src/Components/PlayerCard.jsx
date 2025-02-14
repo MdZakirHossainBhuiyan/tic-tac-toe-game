@@ -13,9 +13,14 @@ const PlayerCard = ({
   setStatus,
   matchDuration,
   isRunning,
+  setIsRunning,
+  time1,
+  setTime1,
+  time2,
+  setTime2,
 }) => {
-  const [time1, setTime1] = useState(matchDuration);
-  const [time2, setTime2] = useState(matchDuration);
+  // const [time1, setTime1] = useState(matchDuration);
+  // const [time2, setTime2] = useState(matchDuration);
   const [activePlayer, setActivePlayer] = useState(1);
 
   const icon1 = icons.find((icon) => icon.title === selectedIcon1);
@@ -25,17 +30,19 @@ const PlayerCard = ({
     if (status) {
       setTime1(0);
       setTime2(0);
-
+      setIsRunning(false);
       return;
     }
 
     if (time1 === 0 && time2 > 0) {
       setStatus("O");
+      setIsRunning(false);
       return;
     }
 
     if (time2 === 0 && time1 > 0) {
       setStatus("X");
+      setIsRunning(false);
       return;
     }
 
