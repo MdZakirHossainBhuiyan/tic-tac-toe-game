@@ -21,15 +21,22 @@ const Board = ({
   setTime1,
   setTime2,
   matchDuration,
+  history,
 }) => {
   const winner = calculateWinner(squares);
-  // let status;
+
+  console.log("history ", history?.length, winner);
 
   useEffect(() => {
     if (winner) {
       setStatus(winner);
+      return;
     }
-  }, [winner]);
+
+    if (!winner && history?.length === 10) {
+      setStatus("draw");
+    }
+  }, [winner, history?.length]);
 
   const handleValue = (i) => {
     if (squares[i] || calculateWinner(squares)) {

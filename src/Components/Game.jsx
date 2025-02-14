@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { icons } from "../utils/icons";
 import Board from "./Board";
+import DisplayResult from "./DisplayResult";
 import History from "./History";
 import PlayerCard from "./PlayerCard";
 
@@ -89,9 +90,17 @@ const Game = ({
             setTime1={setTime1}
             setTime2={setTime2}
             matchDuration={matchDuration}
+            history={history}
           />
 
-          {status && (
+          <DisplayResult
+            status={status}
+            selectedColor1={selectedColor1}
+            selectedColor2={selectedColor2}
+            selectedIcon1={selectedIcon1}
+            selectedIcon2={selectedIcon2}
+          />
+          {/* {status !== "draw" && (
             <div>
               <h3 className="text-white">Winner:</h3>
               <div
@@ -106,7 +115,7 @@ const Game = ({
                 )}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <div className="w-[30%] h-[100vh] bg-[#52b788] pt-[50px] px-[30px]">

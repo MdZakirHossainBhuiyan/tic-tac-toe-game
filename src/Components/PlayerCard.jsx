@@ -19,8 +19,6 @@ const PlayerCard = ({
   time2,
   setTime2,
 }) => {
-  // const [time1, setTime1] = useState(matchDuration);
-  // const [time2, setTime2] = useState(matchDuration);
   const [activePlayer, setActivePlayer] = useState(1);
 
   const icon1 = icons.find((icon) => icon.title === selectedIcon1);
@@ -90,15 +88,13 @@ const PlayerCard = ({
           <div className="text-white flex items-center gap-2">
             Winner:{" "}
             <div
-              className={`${
-                status === "X" ? selectedColor1 : selectedColor2
+              className={`${status === "X" && selectedColor1} ${
+                status === "O" && selectedColor2
               } w-[20px] h-[20px] rounded-full flex items-center justify-center`}
             >
-              {status === "X" ? (
-                <icon1.icon className="text-[10px]" />
-              ) : (
-                <icon2.icon className="text-[10px]" />
-              )}
+              {status === "X" && <icon1.icon className="text-[10px]" />}
+              {status === "O" && <icon2.icon className="text-[10px]" />}
+              {status === "draw" && <p className="pl-1"> Draw</p>}
             </div>
           </div>
         ) : (
