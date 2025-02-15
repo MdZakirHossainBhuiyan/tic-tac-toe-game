@@ -13,32 +13,33 @@ const DisplayResult = ({
 
   return (
     <div>
-      {status === "X" || status === "O" ? (
-        <div>
-          <h3 className="text-white">Winner:</h3>
-          <div
-            className={`w-[100px] h-[100px] rounded-lg flex items-center justify-center text-white ${
-              status === "X" ? selectedColor1 : selectedColor2
-            }`}
-          >
-            {status === "X" ? (
-              <icon1.icon className="text-[70px]" />
-            ) : (
-              <icon2.icon className="text-[70px]" />
-            )}
-          </div>
-        </div>
-      ) : (
-        status === "draw" && (
+      {status === "X" ||
+        (status === "O" && (
           <div>
-            {/* <h3 className="text-white">Match is Draw</h3> */}
+            <h3 className="text-white">Winner:</h3>
             <div
-              className={`w-[100px] h-[100px] rounded-lg flex items-center justify-center text-red-600 bg-red-200 uppercase font-extrabold`}
+              className={`w-[100px] h-[100px] rounded-lg flex items-center justify-center text-white ${
+                status === "X" ? selectedColor1 : selectedColor2
+              }`}
             >
-              draw
+              {status === "X" ? (
+                <icon1.icon className="text-[70px]" />
+              ) : (
+                <icon2.icon className="text-[70px]" />
+              )}
             </div>
           </div>
-        )
+        ))}
+
+      {status === "draw" && (
+        <div>
+          {/* <h3 className="text-white">Match is Draw</h3> */}
+          <div
+            className={`w-[100px] h-[100px] rounded-lg flex items-center justify-center text-red-600 bg-red-200 uppercase font-extrabold`}
+          >
+            draw
+          </div>
+        </div>
       )}
     </div>
   );

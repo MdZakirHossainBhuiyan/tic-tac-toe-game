@@ -21,20 +21,11 @@ const Board = ({
   setTime1,
   setTime2,
   matchDuration,
+  setMatchDuration,
   history,
+  setTossWinner,
 }) => {
   const winner = calculateWinner(squares);
-
-  useEffect(() => {
-    if (winner) {
-      setStatus(winner);
-      return;
-    }
-
-    if (!winner && history?.length === 10) {
-      setStatus("draw");
-    }
-  }, [winner, history?.length]);
 
   const handleValue = (i) => {
     if (squares[i] || calculateWinner(squares)) {
@@ -51,6 +42,35 @@ const Board = ({
 
     onPlay(nextSquares);
   };
+
+  const handlePlayAgain = () => {
+    setStatus(null);
+    jumpTo(0);
+    setIsRunning(true);
+    setTime1(matchDuration);
+    setTime2(matchDuration);
+  };
+
+  const handleBack = () => {
+    setStatus(null);
+    jumpTo(0);
+    setIsRunning(true);
+    setTime1(matchDuration);
+    setTime2(matchDuration);
+    setMatchDuration(20);
+    setTossWinner("");
+    handleCloseGame();
+  };
+
+  useEffect(() => {
+    if (winner) {
+      setStatus(winner);
+    }
+
+    if (!winner && history?.length === 10) {
+      setStatus("draw");
+    }
+  }, [winner, history?.length]);
 
   return (
     <div className="">
@@ -135,7 +155,7 @@ const Board = ({
 
       <div className="flex items-center gap-5 mt-[24px]">
         <button
-          onClick={() => handleCloseGame()}
+          onClick={() => handleBack()}
           className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
         >
           <IoIosArrowBack />
@@ -143,13 +163,7 @@ const Board = ({
         </button>
         {status && (
           <button
-            onClick={() => {
-              setStatus(null);
-              jumpTo(0);
-              setIsRunning(true);
-              setTime1(matchDuration);
-              setTime2(matchDuration);
-            }}
+            onClick={() => handlePlayAgain()}
             className="flex items-center justify-center gap-2 text-white text-[14px] border border-white rounded-lg cursor-pointer px-3 py-1"
           >
             <VscDebugRestart />

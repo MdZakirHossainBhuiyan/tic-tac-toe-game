@@ -15,8 +15,10 @@ const Game = ({
   handleCloseGame,
   tossWinner,
   matchDuration,
+  setMatchDuration,
   isRunning,
   setIsRunning,
+  setTossWinner,
 }) => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setXIsNext] = useState();
@@ -90,7 +92,9 @@ const Game = ({
             setTime1={setTime1}
             setTime2={setTime2}
             matchDuration={matchDuration}
+            setMatchDuration={setMatchDuration}
             history={history}
+            setTossWinner={setTossWinner}
           />
 
           <DisplayResult
