@@ -16,9 +16,11 @@ const Square = ({
     <>
       <button
         onClick={onSquareClick}
-        className={`${!value && "bg-[white]"} ${
+        className={`${!value && "bg-transparent border border-gray-400"} ${
           value === "X" ? selectedColor1 : selectedColor2
-        } h-[30px] w-[30px] m-[5px] text-[16px] rounded-[4px] cursor-pointer flex items-center justify-center text-white`}
+        } ${
+          value && "border-none"
+        } h-[50px] w-[50px] m-[5px] text-[25px] rounded-[4px] cursor-pointer flex items-center justify-center text-white`}
       >
         {value ? value === "X" ? <icon1.icon /> : <icon2.icon /> : ""}
       </button>

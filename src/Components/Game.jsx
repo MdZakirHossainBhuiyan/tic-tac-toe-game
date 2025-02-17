@@ -8,6 +8,7 @@ import PlayerCard from "./PlayerCard";
 const Game = ({
   player1,
   player2,
+  player,
   selectedColor1,
   selectedColor2,
   selectedIcon1,
@@ -19,6 +20,7 @@ const Game = ({
   isRunning,
   setIsRunning,
   setTossWinner,
+  isBotGame,
 }) => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setXIsNext] = useState();
@@ -59,6 +61,7 @@ const Game = ({
         <PlayerCard
           player1={player1}
           player2={player2}
+          player={player}
           selectedColor1={selectedColor1}
           selectedColor2={selectedColor2}
           selectedIcon1={selectedIcon1}
@@ -73,6 +76,7 @@ const Game = ({
           setTime1={setTime1}
           time2={time2}
           setTime2={setTime2}
+          isBotGame={isBotGame}
         />
         <div className="w-full flex items-start justify-center gap-[50px] mt-[70px]">
           <Board

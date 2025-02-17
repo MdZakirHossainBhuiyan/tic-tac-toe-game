@@ -33,7 +33,7 @@ const GameSettingCardAI = ({
 
     handleStartGame();
     setIsRunning(true);
-    handleCloseModal();
+    handleCloseAIModal();
   };
 
   return (

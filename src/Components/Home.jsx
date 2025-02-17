@@ -3,7 +3,12 @@ import { FaRobot } from "react-icons/fa";
 import { GiCrossedSwords } from "react-icons/gi";
 import DisplayRandomInfo from "./DisplayRandomInfo";
 
-const Home = ({ handleOpenModal, handleOpenAIModal }) => {
+const Home = ({ handleOpenModal, handleOpenAIModal, setIsBotGame }) => {
+  const handleAIGame = () => {
+    handleOpenAIModal();
+    setIsBotGame(true);
+  };
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-between p-[72px]">
       <div className="w-full flex flex-col items-center justify-center">
@@ -34,7 +39,7 @@ const Home = ({ handleOpenModal, handleOpenAIModal }) => {
           Rivalry Mode
         </button>
         <button
-          onClick={() => handleOpenAIModal()}
+          onClick={handleAIGame}
           className="flex items-center justify-center gap-5 bg-[#E3F2FD] rounded-full px-8 py-2 font-bold shadow-lg text-[#0F2027] cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
         >
           <FaRobot className="text-2xl text-blue-500" />

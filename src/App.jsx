@@ -18,6 +18,7 @@ function App() {
   const [selectedIcon2, setSelectedIcon2] = useState("lion");
   const [matchDuration, setMatchDuration] = useState(20);
   const [level, setLevel] = useState("easy");
+  const [isBotGame, setIsBotGame] = useState(false);
 
   const [isRunning, setIsRunning] = useState(false);
 
@@ -56,6 +57,7 @@ function App() {
         <Game
           player1={player1}
           player2={player2}
+          player={player}
           selectedColor1={selectedColor1}
           selectedColor2={selectedColor2}
           selectedIcon1={selectedIcon1}
@@ -67,11 +69,13 @@ function App() {
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           setTossWinner={setTossWinner}
+          isBotGame={isBotGame}
         />
       ) : (
         <Home
           handleOpenModal={handleOpenModal}
           handleOpenAIModal={handleOpenAIModal}
+          setIsBotGame={setIsBotGame}
         />
       )}
 

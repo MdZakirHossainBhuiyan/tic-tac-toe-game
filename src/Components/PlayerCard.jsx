@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { FaRobot } from "react-icons/fa";
 import { icons } from "../utils/icons";
 
 const PlayerCard = ({
   player1,
   player2,
+  player,
   selectedColor1,
   selectedColor2,
   selectedIcon1,
@@ -18,6 +20,7 @@ const PlayerCard = ({
   setTime1,
   time2,
   setTime2,
+  isBotGame,
 }) => {
   const [activePlayer, setActivePlayer] = useState(1);
 
@@ -77,7 +80,9 @@ const PlayerCard = ({
           <icon1.icon className="text-[25px]" />
         </div>
         <div>
-          <h2 className="text-white font-bold">{player1}</h2>
+          <h2 className="text-white font-bold">
+            {isBotGame ? player : player1}
+          </h2>
           <div className="border border-[#FFD700] rounded-sm px-3 py-[1px] text-[12px] text-white">
             {time1}
           </div>
@@ -100,31 +105,53 @@ const PlayerCard = ({
         ) : (
           <div className="text-white flex items-center gap-2">
             Next Player:{" "}
-            <div
-              className={`${
-                xIsNext ? selectedColor1 : selectedColor2
-              } w-[20px] h-[20px] rounded-full flex items-center justify-center`}
-            >
-              {xIsNext ? (
-                <icon1.icon className="text-[10px]" />
-              ) : (
-                <icon2.icon className="text-[10px]" />
-              )}
-            </div>
+            {isBotGame ? (
+              <div
+                className={`${
+                  xIsNext ? selectedColor1 : "bg-white"
+                } w-[20px] h-[20px] rounded-full flex items-center justify-center`}
+              >
+                {xIsNext ? (
+                  <icon1.icon className="text-[10px]" />
+                ) : (
+                  <FaRobot className="text-[10px] text-blue-500" />
+                )}
+              </div>
+            ) : (
+              <div
+                className={`${
+                  xIsNext ? selectedColor1 : selectedColor2
+                } w-[20px] h-[20px] rounded-full flex items-center justify-center`}
+              >
+                {xIsNext ? (
+                  <icon1.icon className="text-[10px]" />
+                ) : (
+                  <icon2.icon className="text-[10px]" />
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
       <div className="flex items-center gap-5">
         <div className="flex flex-col items-center justify-end">
-          <h2 className="text-white font-bold">{player2}</h2>
+          <h2 className="text-white font-bold">
+            {isBotGame ? "Bot" : player2}
+          </h2>
           <div className="border border-[#FFD700] rounded-sm px-3 py-[1px] text-[12px] text-white">
             {time2}
           </div>
         </div>
         <div
-          className={`w-[50px] h-[50px] rounded-full ${selectedColor2} flex items-center justify-center text-white`}
+          className={`w-[50px] h-[50px] rounded-full ${
+            isBotGame ? "bg-white" : selectedColor2
+          } flex items-center justify-center text-white`}
         >
-          <icon2.icon className="text-[25px]" />
+          {isBotGame ? (
+            <FaRobot className="text-[25px] text-blue-500" />
+          ) : (
+            <icon2.icon className="text-[25px]" />
+          )}
         </div>
       </div>
     </div>

@@ -11,6 +11,11 @@ const DisplayResult = ({
   const icon1 = icons.find((icon) => icon.title === selectedIcon1);
   const icon2 = icons.find((icon) => icon.title === selectedIcon2);
 
+  console.log("status ", status);
+
+  // display draw after click play again
+  // not display winner when winner is x
+
   return (
     <div>
       {status === "X" ||
